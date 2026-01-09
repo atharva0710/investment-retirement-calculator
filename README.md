@@ -1,148 +1,118 @@
 # Investment & Retirement Simulator
 
-A comprehensive financial modeling web application that simulates a two-phase investment lifecycle with Monte Carlo analysis.
+A professional-grade financial modeling application designed to simulate long-term investment lifecycles, retirement distribution phases, and market volatility through Monte Carlo analysis.
 
-## ✨ Features
+## Core Capabilities
 
-### 📈 Phase 1: Accumulation
-- **Lump Sum Investment**: One-time seed capital
-- **Monthly SIP with Step-Up**: Annual percentage increase in SIP amount
-- **Expected Returns**: Annualized growth rate with monthly compounding
-- **Inflation Tracking**: Calculate purchasing power of future values
+### Accumulation Phase (Investment)
 
-### 📉 Phase 2: Distribution (SWP)
-- **Systematic Withdrawal Plan**: Monthly withdrawals during retirement
-- **Withdrawal Growth**: Annual increase to match inflation
-- **Ongoing SIP**: Continue investing during retirement
-- **SIP Step-Up in Retirement**: Annual increase in ongoing SIP
-- **Longevity Analysis**: Calculate corpus survival period
+- **Lump Sum Initial Investment**: Model one-time seed capital entry.
+- **Systematic Investment Plan (SIP)**: Monthly contributions with automated annual step-up percentages.
+- **Compounding Growth**: Annualized growth rates calculated with monthly compounding intervals.
+- **Inflation Tracking**: Integrated inflation adjustments to project future values in contemporary purchasing power.
 
-### 🎯 Life Events
-- **Lump Sum Additions**: Bonus, inheritance, gifts
-- **Lump Sum Withdrawals**: House, car, wedding, education
-- Events applied at specified years with visual markers
+### Distribution Phase (Withdrawal)
 
-### 🎲 Monte Carlo Simulation
-- **100 Randomized Scenarios**: Simulate market volatility
-- **Success Probability**: Chance your plan survives retirement
-- **Adjustable Volatility**: 1-15% market uncertainty
-- **Target Survival Years**: 10-50 year retirement horizon
-- **Confidence Band Chart**: 10th to 90th percentile outcomes
+- **Systematic Withdrawal Plan (SWP)**: Controlled monthly withdrawals during retirement years.
+- **Inflation-Adjusted Withdrawals**: Automated annual increases to withdrawal amounts to preserve purchasing power.
+- **Hybrid Strategy**: Capability to continue SIP contributions during the distribution phase.
+- **Longevity Analysis**: Quantitative calculation of corpus survival probability and duration.
 
-### 📊 Visualizations
-- **Area Chart**: Portfolio Value vs Total Invested over time
-- **Phase Transition Marker**: Clear indicator when SWP starts
-- **Confidence Band**: Monte Carlo percentile visualization
-- **Donut Chart**: Principal Invested vs Wealth Gained
-- **Data Table**: Year-by-year breakdown with life event column
+### Strategic Life Events
 
-### 🔢 Today's Money (Inflation Adjustment)
-When toggle is ON, **ALL values** display in today's purchasing power:
-- Summary stat cards (Total Invested, Final Corpus, Wealth Gained)
-- Portfolio chart (both lines)
-- Wealth breakdown pie chart
-- Yearly breakdown table
-- Distribution inputs are inflated to future values for accurate calculation
+- **Capital Additions**: Model external inflows such as bonuses, inheritances, or gifts.
+- **Capital Outflows**: Integrate large-scale expenditures like real estate purchases, education, or weddings.
+- **Timeline Precision**: Events are applied at specific yearly intervals with dedicated visual indicators.
 
-Uses the **exact Fisher Equation**: `Real Rate = (1 + nominal) / (1 + inflation) - 1`
+## Analytical Features
 
-### 🗂️ Tabbed Interface
-Content organized into 3 tabs to reduce scrolling:
-| Tab | Contents |
-|-----|----------|
-| 📝 Input | Accumulation, Distribution, Life Events forms |
-| 📊 Analysis | Charts, Monte Carlo, Distribution Summary |
-| 📋 Details | Yearly Breakdown Table |
+### Monte Carlo Simulation
 
-## 🛠️ Tech Stack
+- **Volatilty Modeling**: 100-run randomized simulations to account for market uncertainty.
+- **Success Probability**: Statistical calculation of plan survival over various retirement horizons.
+- **Adjustable Standard Deviation**: Customizable volatility parameters (1-15%) for stress-testing.
+- **Confidence Intervals**: Visualization of 10th, 50th (median), and 90th percentile outcomes.
 
-- **Framework**: React 18 + Vite
-- **Styling**: Tailwind CSS with glassmorphism design
-- **Charts**: Recharts
-- **State**: React Hooks (useState, useMemo)
+### Professional Visualizations
 
-## 🚀 Getting Started
+- **Performance Tracking**: Comparative area charts showing Portfolio Value vs. Total Principal.
+- **Phase Delimitation**: Clear visual markers for the transition between accumulation and distribution.
+- **Portfolio Composition**: Donut charts illustrating the ratio of principal invested to total wealth gained.
+- **Detailed Ledgers**: Year-by-year data breakdown in tabular format.
+
+### Inflation Accounting (Fisher Equation)
+
+The application utilizes the exact Fisher Equation to adjust for inflation:
+`Real Rate = (1 + nominal) / (1 + inflation) - 1`
+
+When the inflation-adjustment toggle is enabled:
+
+- Summary statistics reflect contemporary purchasing power.
+- Charts and tables auto-recalculate all historical and projected values.
+- Distribution inputs are dynamically inflated to maintain real-world accuracy.
+
+## Technical Specifications
+
+### Tech Stack
+
+- **Frontend Framework**: React 18
+- **Build Tooling**: Vite
+- **Styling**: Tailwind CSS
+- **Data Visualization**: Recharts
+- **State Management**: Optimized React Hooks (useState, useMemo)
+
+### Installation and Deployment
 
 ```bash
-# Install dependencies
+# Install project dependencies
 npm install
 
-# Run development server
+# Launch development environment
 npm run dev
 
-# Build for production
+# Generate production build
 npm run build
 ```
 
-## 📁 Project Structure
+## Directory Structure
 
 ```
 src/
-├── components/
-│   ├── layout/
-│   │   ├── Header.jsx
-│   │   ├── TabNavigation.jsx
-│   │   └── icons.jsx
-│   ├── forms/
-│   │   ├── AccumulationForm.jsx
-│   │   ├── DistributionForm.jsx
-│   │   └── LifeEventsForm.jsx
-│   ├── charts/
-│   │   ├── PortfolioChart.jsx
-│   │   ├── WealthBreakdown.jsx
-│   │   └── MonteCarloResults.jsx
-│   └── tables/
-│       └── YearlyBreakdown.jsx
-├── utils/
-│   ├── calculations.js
+├── components/          # UI Components
+│   ├── layout/          # Navigation, Header, and Icons
+│   ├── forms/           # Input modules for financial parameters
+│   ├── charts/          # Recharts implementation modules
+│   └── tables/          # Data visualization components
+├── utils/               # Logic and mathematical kernels
+│   ├── calculations.js  # Core financial engines
 │   └── monteCarloSimulation.js
-├── App.jsx
-├── index.css
-└── main.jsx
+├── App.jsx              # Main application entry
+├── index.css            # Global styles
+└── main.jsx             # React initialization
 ```
 
-## 📐 Financial Formulas
+## Mathematical Models
 
-### SIP with Step-Up (Accumulation)
-```
+### SIP with Periodic Step-Up
+
 For each year:
-  sipAmount = baseSIP × (1 + stepUpRate)^year
-  For each month:
-    balance = balance × (1 + monthlyRate) + sipAmount
-```
+`Annual SIP = Base SIP * (1 + Step-up Rate)^year`
+Compounded monthly:
+`Balance = (Balance * (1 + Monthly Rate)) + Monthly SIP`
 
-### SWP with Ongoing SIP (Distribution)
-```
+### SWP with Continuing Investment
+
 For each month:
-  balance = balance × (1 + monthlyRate)
-  balance += ongoingSIP
-  balance -= withdrawal
-  
-Annual step-ups:
-  withdrawal = withdrawal × (1 + withdrawalGrowthRate)
-  ongoingSIP = ongoingSIP × (1 + sipStepUpRate)
-```
+`Balance = (Balance * (1 + Monthly Rate)) + Ongoing SIP - Monthly Withdrawal`
+Annualized adjustments:
+`Withdrawal_New = Withdrawal_Current * (1 + Inflation Rate)`
 
-### Fisher Equation (Real Rate)
-```
-realRate = ((1 + nominalRate) / (1 + inflationRate)) - 1
-```
+### Monte Carlo Engine
 
-### Monte Carlo Simulation
-```
-For each of 100 simulations:
-  For each year:
-    randomReturn = baseReturn + normalRandom() × volatility
-  Track if corpus survives target years
+For each iteration:
+`Annual Return = Base Return + (Standard Deviation * Normal Random Distribution)`
+Success metrics are aggregated across 100 distinct paths to determine the probability of corpus survival.
 
-Success Rate = (Successful Runs / 100) × 100%
-```
+## License
 
-### Withdrawal Rate
-```
-Initial Withdrawal Rate = (Monthly Withdrawal × 12) / Final Corpus × 100
-```
-
-## 📄 License
-
-MIT
+Distributed under the MIT License.
